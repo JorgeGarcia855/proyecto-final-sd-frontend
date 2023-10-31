@@ -1,5 +1,10 @@
 use yew::prelude::*;
 
+#[derive(Properties, PartialEq)]
+pub struct Props {
+    pub title: String
+}
+
 #[function_component(Login)]
 pub fn login() -> Html {
     html! {

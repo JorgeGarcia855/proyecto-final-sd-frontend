@@ -1,11 +1,12 @@
 use yew::prelude::*;
 use yew_router::prelude::*;
+use crate::components::pages::{login::Login, home::Home};
 
 #[derive(Clone, Routable, PartialEq)]
 pub enum Route {
     #[at("/")]
     Login,
-    #[at("/menu")]
+    #[at("/home")]
     Home,
     #[at("/clientes")]
     Clientes,
@@ -22,14 +23,15 @@ pub enum Route {
 }
 
 pub fn switch(routes: Route) -> Html {
+    
     match routes {
-        Route::Login => html! { <h1>{ "g" }</h1>  },
-        Route::Home => html! { <h1>{ "g" }</h1> },
-        Route::Clientes => html! { <h1>{ "g" }</h1> },
-        Route::Productos => html! { <h1>{ "g" }</h1> },
-        Route::Proveedores => html! { <h1>{ "g" }</h1> },
-        Route::Reportes => html! { <h1>{ "g" }</h1> },
-        Route::Usuarios => html! { <h1>{ "g" }</h1> },
-        Route::Ventas => html! { <h1>{ "g" }</h1> },
+        Route::Login => html! { <Login/> },
+        Route::Home => html! { <Home/>},
+        Route::Clientes => html! { <h1>{ "clientes" }</h1> },
+        Route::Productos => html! { <h1>{ "productos" }</h1> },
+        Route::Proveedores => html! { <h1>{ "proveedores" }</h1> },
+        Route::Reportes => html! { <h1>{ "reportes" }</h1> },
+        Route::Usuarios => html! { <h1>{ "usuarios" }</h1> },
+        Route::Ventas => html! { <h1>{ "ventas" }</h1> },
     }
 }
