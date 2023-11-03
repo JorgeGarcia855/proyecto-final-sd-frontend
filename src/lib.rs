@@ -8,8 +8,10 @@ use crate::router::{Route, switch};
 #[function_component(App)]
 pub fn app() -> Html {
     html! {
-        <BrowserRouter>
+    <div >
+        <BrowserRouter >
             <Switch<Route> render={switch} />
         </BrowserRouter>
+    </div>  
     }
 }
