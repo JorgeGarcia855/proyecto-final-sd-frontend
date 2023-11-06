@@ -1,5 +1,5 @@
 use yew::prelude::*;
-use yew_router::prelude::{use_navigator, Link};
+use yew_router::prelude::Link;
 
 use crate::router::Route;
 

@@ -1,6 +1,9 @@
+use crate::components::pages::{
+    clientes::Clientes, home::Home, login::Login, productos::Productos, proveedores::Proveedores,
+    reportes::Reportes, usuarios::Usuarios, ventas::Ventas,
+};
 use yew::prelude::*;
 use yew_router::prelude::*;
-use crate::components::pages::{login::Login, home::Home, clientes::Clientes, productos::Productos, proveedores::Proveedores, reportes::Reportes, usuarios::Usuarios, ventas::Ventas};
 
 #[derive(Clone, Routable, PartialEq)]
 pub enum Route {

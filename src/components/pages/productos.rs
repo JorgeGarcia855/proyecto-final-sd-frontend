@@ -1,4 +1,4 @@
-use crate::{components::organisms::{navbar::Navbar, footer::Footer}, router::Route};
+use crate::components::organisms::{navbar::Navbar, footer::Footer};
 use yew::prelude::*;
 
 #[function_component(Productos)]
