@@ -2,11 +2,12 @@ use yew::prelude::*;
 
 #[derive(Properties, PartialEq)]
 pub struct Props {
-    pub name: String,
-    pub input_type: String,
-    pub input_name: String,
-    pub id: String,
-    pub placeholder: String, 
+    pub name: AttrValue,
+    pub input_type: AttrValue,
+    pub input_name: AttrValue,
+    pub id: AttrValue,
+    #[prop_or_default]
+    pub placeholder: AttrValue, 
 }
 
 #[function_component(CustomInput)] 
