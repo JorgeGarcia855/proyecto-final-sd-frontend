@@ -2,8 +2,8 @@ use yew::prelude::*;
 
 use crate::components::atoms::{custom_input::CustomInput, custom_button::CustomButton};
 
-#[function_component(ClientForm)]
-pub fn client_form() -> Html {
+#[function_component(UserForm)]
+pub fn user_form() -> Html {
     html! {
       <section class="bg-white dark:bg-gray-900 grow">
         <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
