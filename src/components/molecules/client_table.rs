@@ -1,16 +1,7 @@
 use reqwasm::http::Request;
-use serde::{Serialize, Deserialize};
 use yew::prelude::*;
 
-
-#[derive(Serialize, Deserialize, Debug, PartialEq)]
-pub struct Cliente {
-    pub cedula: i64,
-    pub direccion: String,
-    pub email: String,
-    pub nombre: String,
-    pub telefono: String,
-}
+use crate::components::atoms::entities::Clientes;
 
 #[function_component(ClientRow)]
 fn client_row() -> Html {
@@ -18,7 +9,7 @@ fn client_row() -> Html {
 	let clientes_clone = clientes.clone();
 
     wasm_bindgen_futures::spawn_local(async move {
-        let fetch_clientes: Vec<Cliente> = Request::get("http://localhost:8080/api/clientes/")
+        let fetch_clientes: Vec<Clientes> = Request::get("http://localhost:8080/api/clientes/")
             .send()
             .await
             .unwrap()
@@ -29,54 +20,53 @@ fn client_row() -> Html {
 		clientes.set(Some(fetch_clientes));
     });
 
-	html! {
-		{
-			match clientes_clone.as_ref() {
-				Some(c) => html!{ 
-					<>
-						{c.iter().map(|client| html! { 
-							<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-								<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-									{&client.cedula}
-								</th>
-								<td class="px-6 py-4">
-									{&client.direccion}
-								</td>
-								<td class="px-6 py-4">
-									{&client.email}
-								</td>
-								<td class="px-6 py-4">
-									{&client.nombre}
-								</td>
-								<td class="px-6 py-4">
-									{&client.telefono}
-								</td>
-							</tr>
-						}).collect::<Vec<_>>()}
-					</>	
-				},
-				None => html! { 
+	
+	match clientes_clone.as_ref() {
+		Some(c) => html!{ 
+			<>
+				{c.iter().map(|client| html! { 
 					<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
 						<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-							{"no data"}
+							{&client.cedula}
 						</th>
 						<td class="px-6 py-4">
-							{"no data"}
+							{&client.direccion}
 						</td>
 						<td class="px-6 py-4">
-							{"no data"}
+							{&client.email}
 						</td>
 						<td class="px-6 py-4">
-							{"no data"}
+							{&client.nombre}
 						</td>
 						<td class="px-6 py-4">
-							{"no data"}
+							{&client.telefono}
 						</td>
 					</tr>
-				}
-			} 
+				}).collect::<Vec<_>>()}
+			</>	
+		},
+		None => html! { 
+			<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+				<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+					{"no data"}
+				</th>
+				<td class="px-6 py-4">
+					{"no data"}
+				</td>
+				<td class="px-6 py-4">
+					{"no data"}
+				</td>
+				<td class="px-6 py-4">
+					{"no data"}
+				</td>
+				<td class="px-6 py-4">
+					{"no data"}
+				</td>
+			</tr>
 		}
-	}
+	} 
+		
+	
 }
 
 #[function_component(ClientTable)]

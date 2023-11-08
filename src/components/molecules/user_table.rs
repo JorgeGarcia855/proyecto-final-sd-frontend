@@ -1,16 +1,7 @@
 use reqwasm::http::Request;
-use serde::{Serialize, Deserialize};
 use yew::prelude::*;
 
-
-#[derive(Serialize, Deserialize, Debug, PartialEq)]
-pub struct Usuario {
-    pub cedula: i64,
-    pub email: String,
-    pub nombre: String,
-    pub password: String,
-    pub usuario: String,
-}
+use crate::components::atoms::entities::Usuarios;
 
 #[function_component(UserRow)]
 fn user_row() -> Html {
@@ -18,7 +9,7 @@ fn user_row() -> Html {
 	let usuarios_clone = usuarios.clone();
 
     wasm_bindgen_futures::spawn_local(async move {
-        let fetch_usuarios: Vec<Usuario> = Request::get("http://localhost:8080/api/usuarios/")
+        let fetch_usuarios: Vec<Usuarios> = Request::get("http://localhost:8080/api/usuarios/")
             .send()
             .await
             .unwrap()
