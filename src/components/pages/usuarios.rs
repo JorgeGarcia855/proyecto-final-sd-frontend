@@ -1,13 +1,14 @@
-use crate::components::{organisms::{navbar::Navbar, footer::Footer}, molecules::user_form::UserForm};
-use yew::prelude::*;
+use leptos::*;
 
-#[function_component(Usuarios)]
-pub fn usuarios() -> Html {
-    html! {
-        <div class="bg-white dark:bg-gray-900 flex flex-col min-h-screen">
-            <Navbar/>
+use crate::components::{organisms::{header::Header, footer::Footer}, molecules::forms::user_form::UserForm};
+
+#[component]
+pub fn Usuarios() -> impl IntoView {
+	view! {
+		<div class="bg-white dark:bg-gray-900 flex flex-col min-h-screen">
+            <Header/>
             <UserForm/>
             <Footer/>
         </div>
-    }
+	}
 }

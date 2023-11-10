@@ -1,14 +1,12 @@
-use yew::prelude::*;
+use leptos::*;
 
-use crate::components::organisms::{navbar::Navbar, footer::Footer};
+use crate::components::organisms::{header::Header, footer::Footer};
 
-#[function_component(Home)]
-pub fn home() -> Html {
-    html! { 
-        <div>
-            <Navbar/>
-            
-            <Footer/>
-        </div>
-    }
+#[component]
+pub fn Home() -> impl IntoView {
+	view! {
+		<Header/>
+		
+		<Footer/>
+	}
 }

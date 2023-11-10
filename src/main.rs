@@ -1,5 +1,6 @@
+use leptos::*;
 use proyecto_final_sd_frontend::App;
 
 fn main() {
-    yew::Renderer::<App>::new().render();
-}
+    mount_to_body(|| view! { <App/> })
+} 

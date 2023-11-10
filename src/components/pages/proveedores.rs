@@ -1,13 +1,14 @@
-use crate::components::{organisms::{navbar::Navbar, footer::Footer}, molecules::provider_form::ProviderForm};
-use yew::prelude::*;
+use leptos::*;
 
-#[function_component(Proveedores)]
-pub fn proveedores() -> Html {
-    html! {
-        <div class="bg-white dark:bg-gray-900 flex flex-col min-h-screen">
-            <Navbar/>
+use crate::components::{organisms::{header::Header, footer::Footer}, molecules::forms::provider_form::ProviderForm};
+
+#[component]
+pub fn Proveedores() -> impl IntoView {
+	view! {
+		<div class="bg-white dark:bg-gray-900 flex flex-col min-h-screen">
+            <Header/>
             <ProviderForm/>
             <Footer/>
         </div>
-    }
+	}
 }

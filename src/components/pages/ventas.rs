@@ -1,13 +1,14 @@
-use crate::components::{organisms::{navbar::Navbar, footer::Footer}, molecules::sales_form::SalesForm};
-use yew::prelude::*;
+use leptos::*;
 
-#[function_component(Ventas)]
-pub fn ventas() -> Html {
-    html! {
-        <div class="bg-white dark:bg-gray-900 flex flex-col min-h-screen">
-            <Navbar/>
+use crate::components::{organisms::{header::Header, footer::Footer}, molecules::forms::sales_form::SalesForm};
+
+#[component]
+pub fn Ventas() -> impl IntoView {
+	view! {
+		<div class="bg-white dark:bg-gray-900 flex flex-col min-h-screen">
+            <Header/>
             <SalesForm/>
             <Footer/>
         </div>
-    }
+	}
 }

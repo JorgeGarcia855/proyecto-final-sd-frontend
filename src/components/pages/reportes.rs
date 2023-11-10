@@ -1,20 +1,15 @@
-use crate::components::{organisms::navbar::Navbar, molecules::{client_table::ClientTable, user_table::UserTable}};
-use yew::prelude::*;
+use leptos::*;
 
+use crate::components::{organisms::{header::Header, footer::Footer}, molecules::tables::{client_table::ClientTable, user_table::UserTable}};
 
-
-#[function_component(Reportes)]
-pub fn reportes() -> Html {
-    
-    
-
-    html! {
-        <div class="bg-white dark:bg-gray-900 flex flex-col min-h-screen">
-            <Navbar />
+#[component]
+pub fn Reportes() -> impl IntoView {
+	view! {
+		<div class="bg-white dark:bg-gray-900 flex flex-col min-h-screen">
+            <Header/>
             <ClientTable/>
             <UserTable/>   
-            
-           // <Footer />
+      		<Footer/>
         </div>
     }
 }
