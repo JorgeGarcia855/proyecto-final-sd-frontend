@@ -4,6 +4,8 @@ use crate::components::atoms::{custom_input::CustomInput, custom_button::CustomB
 
 #[component]
 pub fn ClientForm() -> impl IntoView {
+
+	
 	view! {
 		<section class="bg-white dark:bg-gray-900 grow">
 		<div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
@@ -17,10 +19,10 @@ pub fn ClientForm() -> impl IntoView {
 				<CustomInput name="Telefono" input_type="text" id="tel" placeholder="Ej: 302 578 9302"/>
 			</div>
 			<div class="grid gap-4 sm:grid-cols-4 sm:grid-rows-1 sm:gap-6">
-				<CustomButton label="Consultar"/>
-				<CustomButton label="Crear"/>
-				<CustomButton label="Actualizar"/>
-				<CustomButton label="Borrar"/>
+				<CustomButton on_click=move |_| {}  label="Consultar"/>
+				<CustomButton on_click=move |_| {}  label="Crear"/>
+				<CustomButton on_click=move |_| {}  label="Actualizar"/>
+				<CustomButton on_click=move |_| {}  label="Borrar"/>
 			</div>
 		</form>
 		</div>

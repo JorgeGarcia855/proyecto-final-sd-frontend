@@ -17,7 +17,7 @@ pub fn SalesForm() -> impl IntoView {
                 <CustomInput name="Total Venta" input_type="number" id="tven"/>
                 <CustomInput name="Total IVA" input_type="number" id="tiva"/>
                 <CustomInput name="Total con IVA" input_type="number" id="tviva"/>
-				<CustomButton label="Confirmar"/> 
+				<CustomButton on_click=move |_| {}  label="Confirmar"/> 
             </div>
         </form>
         </div>
@@ -32,7 +32,7 @@ fn CheckClient() -> impl IntoView  {
         <form action="#">
             <div class="grid gap-4 mx-auto  sm:grid-cols-8  sm:grid-rows-1 sm:gap-6">
                 <CustomInput name="Cedula" input_type="number" id="ced"/>
-                <CustomButton label="Consultar"/> 
+                <CustomButton on_click=move |_| {}  label="Consultar"/> 
                 <CustomInput name="Cliente" input_type="cliente" id="email"/>
                 <CustomInput name="Consecutivo" input_type="num" id="cons"/> 
             </div>
@@ -46,7 +46,7 @@ fn CheckProduct() -> impl IntoView  {
         <form action="#">
             <div class="grid gap-4 gap-4 sm:grid-cols-10 sm:grid-rows-1 sm:gap-6">
                 <CustomInput name="Codigo Prod." input_type="number" id="ced"/>
-                <CustomButton label="Consultar"/> 	
+                <CustomButton on_click=move |_| {}  label="Consultar"/> 	
                 <CustomInput name="Nombre Prod." input_type="text" id="nom"/> 
 				<CustomInput name="Cant." input_type="num" id="cant"/>  
 				<CustomInput name="Valor Total" input_type="num" id="val"/> 

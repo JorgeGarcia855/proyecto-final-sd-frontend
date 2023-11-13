@@ -20,7 +20,7 @@ pub fn Productos() -> impl IntoView {
                         <input id="dropzone-file" type="file" class="hidden" />
                     </label>
                 </div> 
-                <CustomButton label="Confirmar"/> 
+                <CustomButton on_click=move |_| {}  label="Confirmar"/> 
             </div>
             <Footer/>
         </div>
