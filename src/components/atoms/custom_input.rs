@@ -10,14 +10,16 @@ pub fn CustomInput(
 	#[prop(optional)]
     placeholder: &'static str,
 	#[prop(optional)]
-    value: String,
-	// #[prop(optional)]
-    // on_click: Callback<MouseEvent>,
-) -> impl IntoView {
+    value: Option<Box<dyn Fn() -> Option<String>>>,
+) 
+-> impl IntoView {
 	view! {
 		<div class="sm:col-span-2">
 			<label for={id} class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{name}</label>
-			<input type={input_type} value=move || {value.to_owned()} name={name} id={id} autocomplete class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder={placeholder} required />
+			<input type={input_type} prop:value={match value {
+				Some(v) => v,
+				None => Box::new(move || Some(String::new()))
+			}} name={name} id={id} autocomplete class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder={placeholder} required />
     	</div>
 	}
 }

@@ -5,4 +5,4 @@ port = 8081
 [[hooks]]
 stage = "build"
 command = "sh"
-command_arguments = ["-c", "npx tailwindcss -i ./styles/input.css -o ./styles/output.css"]
+command_arguments = ["-c", "npx tailwindcss -i ./input.css -o ./styles/output.css"]
