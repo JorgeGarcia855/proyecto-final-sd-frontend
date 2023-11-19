@@ -1,6 +1,6 @@
 use leptos::*;
 
-use crate::components::{organisms::{header::Header, footer::Footer}, molecules::tables::{client_table::ClientTable, user_table::UserTable}};
+use crate::components::{organisms::header::Header, molecules::tables::{client_table::ClientTable, user_table::UserTable, sales_table::SalesTable}};
 
 #[component]
 pub fn Reportes() -> impl IntoView {
@@ -8,8 +8,9 @@ pub fn Reportes() -> impl IntoView {
 		<div class="bg-white dark:bg-gray-900 flex flex-col min-h-screen">
             <Header/>
             <ClientTable/>
-            <UserTable/>   
-      		<Footer/>
+            <UserTable/> 
+            <SalesTable/>  
+      		// <Footer/>
         </div>
     }
 }

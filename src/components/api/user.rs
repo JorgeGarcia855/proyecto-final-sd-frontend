@@ -10,24 +10,23 @@ pub struct Usuarios {
     pub usuario: String,
 }
 
+const API: &str = "http://localhost:8080/api/usuarios/";
+
 pub async fn fetch_user(id: i64) -> Usuarios {	
 	let mut usuario = Usuarios::default();
-	let fetched_user = get(format!("http://localhost:8080/api/usuarios/{id}").as_str()).await;
-	match fetched_user {
-		Ok(res) => {
-			let json = res.json::<Usuarios>().await;
-			match json {
-				Ok(user) => { usuario = user },
-				Err(_) => { gloo_dialogs::alert("no user with this id") }
-			}
-		},
-		Err(_) => { gloo_dialogs::alert("no user with this id") }
-	};
+	let fetched_result = get(format!("{API}{id}").as_str()).await;
+	if let Ok(res) = fetched_result {
+		let json = res.json().await;
+		match json {
+			Ok(val) => { usuario = val },
+			Err(_) => { gloo_dialogs::alert(format!("no user with this id").as_str()) }
+		}
+	}
 	usuario
 }
 
 pub async fn fetch_users() -> Option<Vec<Usuarios>> {
-	let fetch = get("http://localhost:8080/api/usuarios/")
+	let fetch = get(API)
 		.await
 		.unwrap()
 		.json::<Vec<Usuarios>>()
@@ -38,7 +37,7 @@ pub async fn fetch_users() -> Option<Vec<Usuarios>> {
 
 pub async fn post_user(user: Usuarios)  {
 	let client = Client::new();
-	let _ = client.post("http://localhost:8080/api/usuarios/")
+	let _ = client.post(API)
 		.json(&user)
 		.send()
 		.await;
@@ -47,7 +46,7 @@ pub async fn post_user(user: Usuarios)  {
 
 pub async fn patch_user(id: i64, user: Usuarios) {
 	let client = Client::new();
-	let _ = client.patch(format!("http://localhost:8080/api/usuarios/{id}").as_str())
+	let _ = client.patch(format!("{API}{id}").as_str())
 		.json(&user)
 		.send()
 		.await;
@@ -55,7 +54,7 @@ pub async fn patch_user(id: i64, user: Usuarios) {
 
 pub async fn delete_user(id: i64) {
 	let client = Client::new();	
-	let _ = client.delete(format!("http://localhost:8080/api/usuarios/{id}").as_str())
+	let _ = client.delete(format!("{API}{id}").as_str())
 		.send()
 		.await;
 }

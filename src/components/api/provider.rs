@@ -2,31 +2,31 @@ use reqwest::*;
 use serde::{Serialize, Deserialize};
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize, Default)]
-pub struct Clientes {
-    pub cedula: Option<i64>,
+pub struct Proveedores {
+    pub nit: Option<i64>,
+    pub ciudad: String,
     pub direccion: String,
-    pub email: String,
     pub nombre: String,
     pub telefono: String,
 }
 
-const API: &str = "http://localhost:8080/api/clientes/";
+const API: &str = "http://localhost:8080/api/proveedores/";
 
-pub async fn fetch_client(id: i64) -> Clientes {	
-	let mut cliente = Clientes::default();
+pub async fn fetch_prov(id: i64) -> Proveedores {	
+	let mut proveedor = Proveedores::default();
 	let fetched_result = get(format!("{API}{id}").as_str()).await;
 	if let Ok(res) = fetched_result {
 		let json = res.json().await;
 		match json {
-			Ok(val) => { cliente = val },
-			Err(_) => { gloo_dialogs::alert(format!("no client with this id").as_str()) }
+			Ok(val) => { proveedor = val },
+			Err(_) => { gloo_dialogs::alert(format!("no provider with this id").as_str()) }
 		}
 	}
-	cliente
+	proveedor
 }
 
-pub async fn fetch_clients() -> Option<Vec<Clientes>> {
-	let fetch: Vec<Clientes> = reqwest::get(API)
+pub async fn fetch_provs() -> Option<Vec<Proveedores>> {
+	let fetch: Vec<Proveedores> = reqwest::get(API)
             .await
             .unwrap()
             .json()
@@ -35,24 +35,24 @@ pub async fn fetch_clients() -> Option<Vec<Clientes>> {
 	Some(fetch)
 }
 
-pub async fn post_client(cli: Clientes)  {
+pub async fn post_prov(prov: Proveedores)  {
 	let client = Client::new();
 	let _ = client.post(API)
-		.json(&cli)
+		.json(&prov)
 		.send()
 		.await;
 	
 }
 
-pub async fn patch_client(id: i64, cli: Clientes) {
+pub async fn patch_prov(id: i64, prov: Proveedores) {
 	let client = Client::new();
 	let _ = client.patch(format!("{API}{id}").as_str())
-		.json(&cli)
+		.json(&prov)
 		.send()
 		.await;
 }
 
-pub async fn delete_client(id: i64) {
+pub async fn delete_prov(id: i64) {
 	let client = Client::new();	
 	let _ = client.delete(format!("{API}{id}").as_str())
 		.send()
