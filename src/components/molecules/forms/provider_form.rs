@@ -37,9 +37,7 @@ pub fn ProviderForm() -> impl IntoView {
             let new_prov = Proveedores { nit: Some(nit.parse().unwrap()), direccion, ciudad, nombre, telefono };
             wasm_bindgen_futures::spawn_local(async move { post_prov(new_prov).await });
             gloo_dialogs::alert("Proveedor creado");
-        } else {
-            gloo_dialogs::alert("you must fill the form");
-        }
+        } else { gloo_dialogs::alert("you must fill the form"); }
 	};
 
 	let actualizar = move |_| {

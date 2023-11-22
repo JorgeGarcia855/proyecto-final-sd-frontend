@@ -16,11 +16,11 @@ pub fn ClientForm() -> impl IntoView {
         if let Ok(id) = current_id {
             let client = create_resource(create_rw_signal::<i64>(id), |id| async move { fetch_client(id).await });
             create_effect(move |_| {
-                if let Some(usuario) = client.get() {
-                    dir_input.get().expect("existing element").set_value(&usuario.direccion);
-                    email_input.get().expect("existing element").set_value(&usuario.email);
-                    name_input.get().expect("existing element").set_value(&usuario.nombre);
-                    tel_input.get().expect("existing element").set_value(&usuario.telefono);
+                if let Some(cliente) = client.get() {
+                    dir_input.get().expect("existing element").set_value(&cliente.direccion);
+                    email_input.get().expect("existing element").set_value(&cliente.email);
+                    name_input.get().expect("existing element").set_value(&cliente.nombre);
+                    tel_input.get().expect("existing element").set_value(&cliente.telefono);
                 }
             });
         } else { gloo_dialogs::alert("there must be some id") }
