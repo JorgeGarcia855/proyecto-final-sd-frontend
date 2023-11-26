@@ -17,8 +17,8 @@ pub fn UserForm() -> impl IntoView {
             let user = create_resource(create_rw_signal::<i64>(id), |id| async move { fetch_user(id).await });
             create_effect(move |_| {
                 if let Some(usuario) = user.get() {
-                    name_input.get().expect("existing element").set_value(&usuario.nombre);
-                    email_input.get().expect("existing element").set_value(&usuario.email);
+                    name_input.get().expect("existing element").set_value(&usuario.nombre.unwrap_or_default());
+                    email_input.get().expect("existing element").set_value(&usuario.email.unwrap_or_default());
                     pass_input.get().expect("existing element").set_value(&usuario.password);
                     user_input.get().expect("existing element").set_value(&usuario.usuario);
                 }
@@ -34,7 +34,7 @@ pub fn UserForm() -> impl IntoView {
         let usuario = user_input.get().expect("existing element").value();
 
         if !cedula.is_empty() && !nombre.is_empty() && !email.is_empty() && !password.is_empty() && !usuario.is_empty() {
-            let new_user = Usuarios { cedula: Some(cedula.parse().unwrap()), nombre, email, password, usuario };
+            let new_user = Usuarios { cedula: Some(cedula.parse().unwrap()), nombre: Some(nombre), email: Some(email), password, usuario };
             wasm_bindgen_futures::spawn_local(async move { post_user(new_user).await });
             gloo_dialogs::alert("Usuario creado");
         } else {
@@ -50,7 +50,7 @@ pub fn UserForm() -> impl IntoView {
         let usuario = user_input.get().expect("existing element").value();
         
         if !cedula.is_empty() && !nombre.is_empty() && !email.is_empty() && !password.is_empty() && !usuario.is_empty() {
-            let existing_user = Usuarios { cedula: Some(cedula.parse().unwrap()), nombre, email, password, usuario };
+            let existing_user = Usuarios { cedula: Some(cedula.parse().unwrap()), nombre: Some(nombre), email: Some(email), password, usuario };
             wasm_bindgen_futures::spawn_local(async move { patch_user(cedula.parse().unwrap(), existing_user).await });
             gloo_dialogs::alert("Usuario actualizado");
         } else {

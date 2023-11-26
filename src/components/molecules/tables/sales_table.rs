@@ -24,6 +24,17 @@ pub fn SalesTable() -> impl IntoView {
 fn SalesRow() -> impl IntoView {
 	let sales = create_rw_signal::<Option<Vec<Ventas>>>(None);
     let fetched_sale = create_resource(sales, |_| async move { fetch_sales().await });
+    let total_sales = move || {
+        let mut temp = 0.0;
+        if let Some(numbers) = fetched_sale.clone().get() {
+            if let Some(res) = numbers {
+                for num in res {
+                    temp += num.total_venta;
+                }
+            }
+        }
+        temp
+    };
     view! {
         {move || if let Some(cli) = fetched_sale.get() {
             if let Some(list) = cli {
@@ -35,7 +46,12 @@ fn SalesRow() -> impl IntoView {
                         </tr>
                     }
                 }).collect::<Vec<_>>().into_view()
+                
             } else { view! { <NoDataRow size=2/> } }  
         } else { view! { <LoadingRow size=1/> } }}
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">"Total de Ventas"</th>
+            <td class="px-6 py-4">{total_sales}</td>
+        </tr>
     }
 }

@@ -25,36 +25,36 @@ pub async fn fetch_prod(id: i64) -> Productos {
 	producto
 }
 
-pub async fn fetch_prods() -> Option<Vec<Productos>> {
-	let fetch: Vec<Productos> = reqwest::get(API)
-            .await
-            .unwrap()
-            .json()
-            .await
-            .unwrap();
-	Some(fetch)
-}
+// pub async fn fetch_prods() -> Option<Vec<Productos>> {
+// 	let fetch: Vec<Productos> = reqwest::get(API)
+//             .await
+//             .unwrap()
+//             .json()
+//             .await
+//             .unwrap();
+// 	Some(fetch)
+// }
 
-pub async fn post_prod(prod: Productos)  {
-	let client = Client::new();
-	let _ = client.post(API)
-		.json(&prod)
-		.send()
-		.await;
+// pub async fn post_prod(prod: Productos)  {
+// 	let client = Client::new();
+// 	let _ = client.post(API)
+// 		.json(&prod)
+// 		.send()
+// 		.await;
 	
-}
+// }
 
-pub async fn patch_prod(id: i64, prod: Productos) {
-	let client = Client::new();
-	let _ = client.patch(format!("{API}{id}").as_str())
-		.json(&prod)
-		.send()
-		.await;
-}
+// pub async fn patch_prod(id: i64, prod: Productos) {
+// 	let client = Client::new();
+// 	let _ = client.patch(format!("{API}{id}").as_str())
+// 		.json(&prod)
+// 		.send()
+// 		.await;
+// }
 
-pub async fn delete_prod(id: i64) {
-	let client = Client::new();	
-	let _ = client.delete(format!("{API}{id}").as_str())
-		.send()
-		.await;
-}
+// pub async fn delete_prod(id: i64) {
+// 	let client = Client::new();	
+// 	let _ = client.delete(format!("{API}{id}").as_str())
+// 		.send()
+// 		.await;
+// }

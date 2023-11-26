@@ -1,5 +1,5 @@
 use leptos::{*, html::Input};
-use web_sys::{InputEvent, Event};
+use web_sys::Event;
 
 #[component]
 pub fn CustomInput(

@@ -25,15 +25,15 @@ pub async fn fetch_prov(id: i64) -> Proveedores {
 	proveedor
 }
 
-pub async fn fetch_provs() -> Option<Vec<Proveedores>> {
-	let fetch: Vec<Proveedores> = reqwest::get(API)
-            .await
-            .unwrap()
-            .json()
-            .await
-            .unwrap();
-	Some(fetch)
-}
+// pub async fn fetch_provs() -> Option<Vec<Proveedores>> {
+// 	let fetch: Vec<Proveedores> = reqwest::get(API)
+//             .await
+//             .unwrap()
+//             .json()
+//             .await
+//             .unwrap();
+// 	Some(fetch)
+// }
 
 pub async fn post_prov(prov: Proveedores)  {
 	let client = Client::new();

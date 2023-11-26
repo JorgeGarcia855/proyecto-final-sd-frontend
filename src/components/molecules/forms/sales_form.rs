@@ -1,7 +1,7 @@
 use leptos::{*, html::Input};
 use leptos_router::Form;
 
-use crate::components::{atoms::{custom_input::CustomInput, custom_button::CustomButton}, api::{client::fetch_client, product::{fetch_prod, Productos}, sales::{Ventas, post_sale}, det_sales::{DetalleVentas, post_sale_det}}};
+use crate::components::{atoms::{custom_input::CustomInput, custom_button::CustomButton}, api::{client::fetch_client, product::fetch_prod, sales::{Ventas, post_sale}, det_sales::{DetalleVentas, post_sale_det}}};
 
 #[component]
 pub fn SalesForm() -> impl IntoView {
