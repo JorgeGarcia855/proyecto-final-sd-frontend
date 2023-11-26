@@ -12,18 +12,18 @@ pub struct Ventas {
 }
 const API: &str = "http://localhost:8080/api/ventas/";
 
-pub async fn fetch_sale(id: i64) -> Ventas {	
-	let mut venta = Ventas::default();
-	let fetched_result = get(format!("{API}{id}").as_str()).await;
-	if let Ok(res) = fetched_result {
-		let json = res.json().await;
-		match json {
-			Ok(val) => { venta = val },
-			Err(_) => { gloo_dialogs::alert(format!("no sale with this id").as_str()) }
-		}
-	}
-	venta
-}
+// pub async fn fetch_sale(id: i64) -> Ventas {	
+// 	let mut venta = Ventas::default();
+// 	let fetched_result = get(format!("{API}{id}").as_str()).await;
+// 	if let Ok(res) = fetched_result {
+// 		let json = res.json().await;
+// 		match json {
+// 			Ok(val) => { venta = val },
+// 			Err(_) => { gloo_dialogs::alert(format!("no sale with this id").as_str()) }
+// 		}
+// 	}
+// 	venta
+// }
 
 pub async fn fetch_sales() -> Option<Vec<Ventas>> {
 	let fetch: Vec<Ventas> = reqwest::get(API)
@@ -44,17 +44,17 @@ pub async fn post_sale(sale: Ventas)  {
 	
 }
 
-pub async fn patch_sale(id: i64, sale: Ventas) {
-	let client = Client::new();
-	let _ = client.patch(format!("{API}{id}").as_str())
-		.json(&sale)
-		.send()
-		.await;
-}
+// pub async fn patch_sale(id: i64, sale: Ventas) {
+// 	let client = Client::new();
+// 	let _ = client.patch(format!("{API}{id}").as_str())
+// 		.json(&sale)
+// 		.send()
+// 		.await;
+// }
 
-pub async fn delete_sale(id: i64) {
-	let client = Client::new();	
-	let _ = client.delete(format!("{API}{id}").as_str())
-		.send()
-		.await;
-}
+// pub async fn delete_sale(id: i64) {
+// 	let client = Client::new();	
+// 	let _ = client.delete(format!("{API}{id}").as_str())
+// 		.send()
+// 		.await;
+// }
