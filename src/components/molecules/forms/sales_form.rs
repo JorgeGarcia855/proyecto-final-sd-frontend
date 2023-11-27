@@ -65,7 +65,7 @@ pub fn SalesForm() -> impl IntoView {
                     let cons = consecutivo.get();
                     cons_input.get().unwrap().set_value(cons.to_string().as_str());
                     let new_sale = Ventas { 
-                        codigo:Some(cons), 
+                        codigo:Some(cons+24), 
                         cedula_cliente: Some(client_id), 
                         cedula_usuario: Some(client_id), 
                         iva_venta, 

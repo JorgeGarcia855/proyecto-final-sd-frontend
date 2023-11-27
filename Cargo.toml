@@ -9,7 +9,6 @@ opt-level = "z"
 lto = true
 panic = "abort"
 codegen-units = 1
-wasm-opt = true
 
 [dependencies]
 leptos = { version = "0.5.2", features = ["csr", "nightly"] }

@@ -1,5 +1,6 @@
 use leptos::{*, html::Input};
 use leptos_router::*;
+use web_sys::MouseEvent;
 
 use crate::components::api::user::{login, Usuarios};
 
@@ -8,16 +9,17 @@ pub fn Login() -> impl IntoView {
     let user_ref: NodeRef<Input> = create_node_ref();
     let pass_ref: NodeRef<Input> = create_node_ref();
 
-    let on_submit = move |_| {
+    let on_submit = move |ev: MouseEvent| {
+        ev.prevent_default();
         let user = user_ref.get().expect("element not exitent").value();
         let pass = pass_ref.get().expect("element not exitent").value();
 
         if !user.is_empty() && !pass.is_empty() {
             let body = Usuarios {usuario: user, password: pass, ..Default::default()};
             wasm_bindgen_futures::spawn_local(async move { login(body).await });
-        }
-
-        gloo_dialogs::alert("Debes llenar los datos");
+        } else {
+            gloo_dialogs::alert("Debes llenar los datos");
+        }  
     };
 
 	view! {
